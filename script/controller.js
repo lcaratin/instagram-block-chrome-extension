@@ -16,11 +16,10 @@ function Controller () {
             document.getElementById('fb-root'),
         ]);
 
-        this.showMessage('Instagram liberado');
+        this.showMessage('Block removed');
     };
 
     this.showMessage = (message) => {
-        //document.getElementById('alert').innerHTML = message;
         alert(message);
     }
 
@@ -57,9 +56,9 @@ Controller.searchBlockScreen = () => {
     return Controller.getInstance().searchBlockScreen();
 }
 
-var lockSearch = (e) => {
-    console.log('scroll');
+// INITIALIZE
 
+var lockSearch = (e) => {
     if (Controller.searchBlockScreen()) {
         Controller.removeBlock();
         window.removeEventListener('scroll', lockSearch, false);
