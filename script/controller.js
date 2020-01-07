@@ -1,40 +1,22 @@
-// INITIALIZER
-
-// document.addEventListener('DOMContentLoaded', () => {
-//     debugger;
-//     var scree = document.getElementsByClassName('RnEpo Yx5HN   ')[0];
-
-//     if (scree) 
-//         document.getElementById('alert1').innerHTML = 'primeira certo';
-//     else document.getElementById('alert1').innerHTML = 'primeira errado';
-
-//     Controller.removeBlock();
-// });
-
-// Controller DEFINITION
-
 function Controller () {
+    this.searchBlockScreen = () => {
+        let grayScreen = document.getElementsByClassName('RnEpo Yx5HN   ')[0];
+        return grayScreen;
+    }
+
     this.removeBlock = () => {
-        debugger;
+        let grayScreen = document.getElementsByClassName('RnEpo Yx5HN   ')[0];
 
-        var grayScreen = document.getElementsByClassName('RnEpo Yx5HN   ')[0];
-
-        if (grayScreen) {
-            
-            this.removeElement(grayScreen);
+        this.removeElement(grayScreen);
     
-            this.unlockElements([
-                document.getElementsByTagName('body')[0],
-                document.getElementsByClassName('_9eogI E3X2T')[0],
-                document.getElementsByClassName('Z2m7o')[0],
-                document.getElementById('fb-root'),
-            ]);
+        this.unlockElements([
+            document.getElementsByTagName('body')[0],
+            document.getElementsByClassName('_9eogI E3X2T')[0],
+            document.getElementsByClassName('Z2m7o')[0],
+            document.getElementById('fb-root'),
+        ]);
 
-            this.showMessage('Instagram liberado');
-        }
-        else {
-            this.showMessage('Bloqueio não encontrado');
-        }
+        this.showMessage('Instagram liberado');
     };
 
     this.showMessage = (message) => {
@@ -70,3 +52,18 @@ Controller.getInstance = () => {
 Controller.removeBlock = () => {
     Controller.getInstance().removeBlock();
 }
+
+Controller.searchBlockScreen = () => {
+    return Controller.getInstance().searchBlockScreen();
+}
+
+var lockSearch = (e) => {
+    console.log('scroll');
+
+    if (Controller.searchBlockScreen()) {
+        Controller.removeBlock();
+        window.removeEventListener('scroll', lockSearch, false);
+    }
+}
+
+window.addEventListener('scroll', lockSearch, false);
