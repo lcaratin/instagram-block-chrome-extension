@@ -9,12 +9,11 @@
             "32": "images/iconfinder_instagram_1107220.png" 
         },
         "default_title": "Instagram Unlocker",
-        "default_popup": "popup.html"
     },
     "content_scripts": [
         {
           "matches": ["http://www.instagram.com/*", "https://www.instagram.com/*"],
-          "js": ["controller.js"]
+          "js": ["./script/controller.js"]
         }
       ]
 }
